@@ -19,9 +19,6 @@ class Runner:
         return self.location
 
 
-
-with open("runner_name.txt") as f:
-    text = f.readlines()
 # runners = {}
 # rnr_john_10 = Runner("john", 10)
 # rnr_jack_8 = Runner("jack", 8)
@@ -57,5 +54,9 @@ while True:
     if winner:
         break
 
+
+with open('runner.log', 'w') as file:
+    for runner in runners:
+        file.write(f"{runner.name}: {runner.get_location()}\n")
 
 print(f"The winner is {winner.name}!")
