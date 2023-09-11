@@ -1,5 +1,7 @@
 import random
 import time
+import logging
+import sys
 
 class Runner:
     def __init__(self, name, speed):
@@ -28,29 +30,34 @@ with open('runner_name.txt') as file:
 end_line = 10
 winner = None
 
-with open('runner.log', 'w') as file:
-    file.write("Starting \n")
+logging.basicConfig(filename='sample.log', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s',
+                    datefmt='[%Y-%m-%d %I:%M:%S %p]')
+# logging.basicConfig(handlers=[logging.FileHandler("handeler.log"),logging.StreamHandler(sys.stdout)], level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s',
+#                     datefmt='[%Y-%m-%d %I:%M:%S %p]')
 
-with open('runner.log', 'a') as file:
-    step=0
-    while True:
-        for runner in runners:
-            runner.step()
-            location = runner.get_location()
-            print(f"{runner.name}: {'-' * int(location)}")
-            file.write(f"[{step}: {runner.name}]: {runner.get_location()}\n") 
-            time.sleep(0.5)
+logging.info("Starting...")
 
-            
-            if location >= end_line:
-                winner = runner
-                break
-        step +=1
-                    
+step=0
+while True:
+    for runner in runners:
+        runner.step()
+        location = runner.get_location()
+        print(f"{runner.name}: {'-' * int(location)}")
+        logging.info(f"\t[{step}: {runner.name}]: {runner.get_location()}")
+        time.sleep(0.5)
 
-
-        if winner:
+        if location >= end_line:
+            winner = runner
+            # if winner.get_location() != 10:
+            #     logging.debug("it more than 10 and should be 10 -- FIXME--")
             break
+    step +=1
+                
+
+
+    if winner:
+        logging.info(f"\t\tWinner is: {runner.name} AT {runner.get_location()}")
+        break
 
 
 
