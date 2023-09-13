@@ -30,10 +30,20 @@ with open('runner_name.txt') as file:
 end_line = 10
 winner = None
 
-logging.basicConfig(filename='sample.log', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s',
-                    datefmt='[%Y-%m-%d %I:%M:%S %p]')
-# logging.basicConfig(handlers=[logging.FileHandler("handeler.log"),logging.StreamHandler(sys.stdout)], level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s',
-#                     datefmt='[%Y-%m-%d %I:%M:%S %p]')
+logging.basicConfig(
+    filename='sample.log', 
+    level=logging.DEBUG, 
+    format='%(asctime)s:%(levelname)s:%(message)s', 
+    datefmt='[%Y-%m-%d %I:%M:%S %p]'
+    )
+    
+# logging.basicConfig(
+#     handlers=[logging.FileHandler("handeler.log"),
+#     logging.StreamHandler(sys.stdout)], 
+#     level=logging.DEBUG, 
+#     format='%(asctime)s:%(levelname)s:%(message)s', 
+#     datefmt='[%Y-%m-%d %I:%M:%S %p]'
+#     )
 
 logging.info("Starting...")
 
